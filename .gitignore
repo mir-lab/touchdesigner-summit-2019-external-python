@@ -1,0 +1,14 @@
+# dependencies
+dev_template/dev/dep/*
+dev_template/release/dep/*
+workshop/dep/*
+
+# the git-pip python bits
+dev_template/dev/dep/python/get-pip.py
+dev_template/release/dep/python/get-pip.py
+
+# the external TD tools
+dev/td-modules/tools/releaseVersions/*
+
+# mac files
+*.DS_STORE
