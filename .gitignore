@@ -10,5 +10,8 @@ dev-template/release/dep/python/get-pip.py
 # the external TD tools
 dev/td-modules/tools/releaseVersions/*
 
+# ignore the vscode bits
+.vscode/*
+
 # mac files
 *.DS_STORE
