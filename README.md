@@ -37,13 +37,16 @@ Install python 3.5.1
 
 
 ### Windows
-Update pip
+Update pip  
 `python -m pip install --user --upgrade pip`
 
 ### Mac
-Make sure you have pip
+Make sure you have pip  
 `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
 `python3 get-pip.py`
+
+Update pip  
+`python3 -m pip install --user --upgrade pip`
 
 ## Installing an External Library
 If you're doing some exploration on your own machine it's often very tempting to use the fast and easy process of installing a library with pip's straightforward installation calls. That often looks something like this as a command line operation:  
@@ -52,7 +55,11 @@ If you're doing some exploration on your own machine it's often very tempting to
 Boom! Easy, to the point, and fast. Why bother with anything else?
 
 Well, there is a lot going on here... and what our process will look like will actually look like a command string like this:  
-`py -3.5 pip install -r path_to_our/requirements.txt --target="path_to_an_target_dir/dep"`
+Windows  
+`py -3.5 pip install -r path_to_our/requirements.txt --target="path_to_an_target_dir/dep/python"`
+
+Mac  
+`python3 pip install -r path_to_our/requirements.txt --target="path_to_an_target_dir/dep/python"`
 
 ### That Escalated Quickly
 Totes. I know. 
