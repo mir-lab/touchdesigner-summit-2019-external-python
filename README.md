@@ -24,13 +24,38 @@ Time | Topic
 Python has more and more reach these days - from web services to internet of things objects scientific and statistical analysis of data, what you can do with Python is ever expanding. While it's possible to do all of this work from the ground up, it's often easier (and faster) to use libraries that other people have published. TouchDesigner already comes with a few extra libraries included like OpenCV and Numpy. Once you have a handle on working with Python the world feels like it's your oyster... but how you work with a magical little external library in TouchDesigner can be very tricksy. Worse yet, if you happen to get it working on your machine, making work on another can be infuriating. Over the course of this workshop we'll take a look at what you can do to make this process as smooth and painless as possible, as well as some considerations and practices that will help you stay sane when you're trouble shooting this wild Python rollercoaster.
 
 ## Intro - Why Python External Libraries
-
+External libraries offer huge benefits as an artist-developer. There's a good chance what you want to explore or do will take more hours than there are in a day, or in a lifetime. Using external libraries opens up your possibilities to include all sorts of exciting and interesting integration. From something as banal as sending email or checking weather to more interesting mechanisms for communicating with web services or IoT devices. Working with these libraries gives you room to focus more deeply on the work you want to do, rather than the lower level mechanics of getting it working. It also means you can make the best use of the limited time we have for complicated projects. 
 
 ## Python in TouchDesigner
-Python in TouchDesigner is a wild ride. The deep reaches of the integration give you the freedoms to touch nearly any operator, and while that may well be amazing - it also comes with some cautions and considerations. 
+Python in TouchDesigner is a wild ride. The deep reaches of the integration give you the freedoms to touch nearly any operator, and while that may well be amazing - it also comes with some cautions and considerations. Python in Touch is deeply connected to how TouchDesigner manages time and state. What this means is that anything you're executing in the main thread will bind touch for as long as it takes for the operation to complete. In many cases this is just fine, changing parameters or logic statements are largely straightforward enough, but we cna get into some real trouble with very simple seeming things. Let's see a clear example. In a text DAT try this:
+```python
+import time
+time.sleep(5)
+```
+What you'll see happen next in Touch is that the time-line will freeze, and you might even get a wonderful little spinning icon. `time.sleep(5)` is a Pythonic way of saying "wait 5 seconds, then move on. What that means in Touch, however, is that we stop everything (even updating our rendering) for that 5 seconds. Because Touch is largely single threaded, this can have major performance implications. The last thing any of us want is for everything to freeze suddenly,  or for frames to drop out of nowhere. ALl of this to say that how we use Python in Touch matters, and when we choose to do something in Touch or Outside of Touch often depends on what we're trying to do, and how it connects to our application as a whole. 
 
 ### Inside or Outside of Touch...
+"How do I know if I should do something in Touch, or with a separate system call?" That's a hard question, and to get to an answer there are a few things we can think about:
+* Is this in a project that needs a constantly updating output?  
+* Is this operation something that happens only during configuration / offline mode, or during a show?
+* What's my tolerance for stutters or dropped frames?
+* Do I need feedback that this process has completed?
 
+If you've got an expensive Python operation that you have to run doing a live-set, or during performance critical moments you should definitly look at subprocess call or running those pieces in another touch project. If you can't have dropped frames then it's wroth thinking hard about if you need this feature, or how to make it work in a way that won't interrupt your output. 
+
+If the operation happens during calibration or configuration and happens to be slow, then you might be just fine. Web services can be very tricky here. Depending on your network configuration you can easily end up in a situation where touch is waiting for a reply from a remote server, and that can look like a frozen UI. If that's a dealbreaker, then it's time to look at other options for how to handle the operation in question.
+
+### Other options include...
+Okay, so what do we do if we end up with one of these deal breakers? Well, there are a few directions we can go.
+
+#### Threads
+You can run an operation in another thread - though for this to work you have to be dealing with pure python. If you're working with operators in anyway in threads, you will definitely crash at some point. There are some ways around this, but it's dangerous waters so save often and know that strange things will happen.
+
+#### Subprocess
+ You can use use a subrprocess call - in other words, write a python script in a text file, and then ask your operating system to run that file. There are great ways to pass in arguments in those situations, and if you really need data there are ways to get a response before the process quits. This can be a very flexible solution for a number of situations, and worth looking into if you want something that's non-blocking and can be run outside of TouchDesigner.
+
+#### Python Stand alones
+You can also always write a little python script that just runs in the background. There are plenty of ways for sending data to and from these kinds of applications, so this is a solid option - but it will require some time devoted to developing your Python-fu.
 
 ## Setting up Python on your Machine
 Install python 3.5.1
@@ -134,3 +159,4 @@ It's always helpful to have additional Resources and learning materials, but whe
 * [sklearn - data analysis in Python](https://scikit-learn.org/stable/)
 * [spotipy - control spotify with Python](https://github.com/plamere/spotipy)
 * [SoCo - control sonos speakers with Python](https://github.com/SoCo/SoCo)
+* [Awesome-Python - a list of all sorts of libraries worth exploring](https://github.com/vinta/awesome-python)
