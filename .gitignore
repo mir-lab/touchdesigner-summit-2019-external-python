@@ -13,5 +13,8 @@ dev/td-modules/tools/releaseVersions/*
 # ignore the vscode bits
 .vscode/*
 
+# ignore the files we put into assets
+workshop/assets/*
+
 # mac files
 *.DS_STORE

@@ -21,13 +21,13 @@ Time | Topic
 6:00 pm | Wrap
 
 ## Overview
-
+Python has more and more reach these days - from web services to internet of things objects scientific and statistical analysis of data, what you can do with Python is ever expanding. While it's possible to do all of this work from the ground up, it's often easier (and faster) to use libraries that other people have published. TouchDesigner already comes with a few extra libraries included like OpenCV and Numpy. Once you have a handle on working with Python the world feels like it's your oyster... but how you work with a magical little external library in TouchDesigner can be very tricksy. Worse yet, if you happen to get it working on your machine, making work on another can be infuriating. Over the course of this workshop we'll take a look at what you can do to make this process as smooth and painless as possible, as well as some considerations and practices that will help you stay sane when you're trouble shooting this wild Python rollercoaster.
 
 ## Intro - Why Python External Libraries
 
 
 ## Python in TouchDesigner
-
+Python in TouchDesigner is a wild ride. The deep reaches of the integration give you the freedoms to touch nearly any operator, and while that may well be amazing - it also comes with some cautions and considerations. 
 
 ### Inside or Outside of Touch...
 
@@ -47,6 +47,10 @@ Make sure you have pip
 
 Update pip  
 `python3 -m pip install --user --upgrade pip`
+
+Navigate to the folder in Terminal
+Set permissions so the file can be execuatable
+`chmod +x myfile.sh`
 
 ## Installing an External Library
 If you're doing some exploration on your own machine it's often very tempting to use the fast and easy process of installing a library with pip's straightforward installation calls. That often looks something like this as a command line operation:  
