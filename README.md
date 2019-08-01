@@ -52,14 +52,80 @@ Okay, so what do we do if we end up with one of these deal breakers? Well, there
 You can run an operation in another thread - though for this to work you have to be dealing with pure python. If you're working with operators in anyway in threads, you will definitely crash at some point. There are some ways around this, but it's dangerous waters so save often and know that strange things will happen.
 
 #### Subprocess
- You can use use a subrprocess call - in other words, write a python script in a text file, and then ask your operating system to run that file. There are great ways to pass in arguments in those situations, and if you really need data there are ways to get a response before the process quits. This can be a very flexible solution for a number of situations, and worth looking into if you want something that's non-blocking and can be run outside of TouchDesigner.
+You can use use a subrprocess call - in other words, write a python script in a text file, and then ask your operating system to run that file. There are great ways to pass in arguments in those situations, and if you really need data there are ways to get a response before the process quits. This can be a very flexible solution for a number of situations, and worth looking into if you want something that's non-blocking and can be run outside of TouchDesigner.
+
+Subprocess calls can be infuriating if you're not familiar with them, so let's look at some simple anatomy of making this work from Touch.
+
+If you want to use TouchDesigner's version of Python you'd write something like this:
+```python
+import subprocess
+
+cmd_python_script   = '{}\\your_python_file.py'.format(project.folder)
+
+subprocess.Popen(['python', cmd_python_script], shell=False)
+```
+
+If you want to use a specific version of Python you'd write something like this:
+```python
+import subprocess
+
+cmd_python_script   = '{}\\your_python_file.py'.format(project.folder)
+python_exe          = 'C:\\Program Files\\Python35\\python.exe' #this might be different for you
+
+subprocess.Popen([python_exe, cmd_python_script], shell=False)
+```
+
+If you want to call a script with arguments you'd write something like this:
+
+This is our Script in TouchDesigner
+```python
+import subprocess
+
+cmd_python_script = '{}\\cmd_line_python_args.py'.format(project.folder)
+script_args = ['-i', 'Hello', '-i2', 'TouchDesigner']
+
+command_list = ['python', cmd_python_script] + script_args
+
+subprocess.Popen(command_list, shell=False)
+```
+
+This is our python script that's being called:
+```python
+import time
+from argparse import ArgumentParser
+
+# a simple method to print out our arguments
+def My_python_method(kwargs):
+
+    disp_str = 'key: {} | value: {} | type: {}'
+    for each_key, each_value in kwargs.items():
+        formatted_str = disp_str.format(each_key, each_value, type(each_value))
+        print(formatted_str)
+
+    # keep the shell open so we can debug
+    time.sleep(int(kwargs.get('delay')))
+
+# execution order matters -this puppy has to be at the bottom as our functions are defined above
+if __name__ == '__main__':
+    parser = ArgumentParser(description='Set up a file watcher to stylize files that are added to the specified folder')
+    parser.add_argument("-i", "--input", dest="in", help="an input string", required=True)
+    parser.add_argument("-i2", "--input2", dest="in2", help="another input", required=True)    
+    parser.add_argument("-d", "--delay", dest="delay", help="how long our terminal stays up", required=False, default=10)
+    args = parser.parse_args()
+    My_python_method(vars(args))
+    # My_python_method(args.input, args.intput2, args.delay)
+    pass
+
+# example
+# python .\cmd_line_python_args.py -i="a string" -i2="another string" -d=15
+
+```
 
 #### Python Stand alones
 You can also always write a little python script that just runs in the background. There are plenty of ways for sending data to and from these kinds of applications, so this is a solid option - but it will require some time devoted to developing your Python-fu.
 
 ## Setting up Python on your Machine
 Install python 3.5.1
-
 
 ### Windows
 Update pip  
