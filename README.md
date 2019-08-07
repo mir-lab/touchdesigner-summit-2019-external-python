@@ -15,8 +15,8 @@ Time | Topic
 2:30 pm | Intro - Why Python External Libraries
 3:00 pm | Python in TouchDesigner
 3:30 pm | Setting up Python on your Machine
-4:00 pm | Instagram Example
-5:00 pm | Packaging your Python
+4:00 pm | Weather Example
+5:00 pm | Packaging your Python | Dominant Color Example
 5:30 pm | Starting Points - an example for Tox Buiding
 6:00 pm | Wrap
 
