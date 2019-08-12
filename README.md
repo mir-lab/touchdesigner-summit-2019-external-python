@@ -15,9 +15,9 @@ Time | Topic
 2:30 pm | Intro - Why Python External Libraries
 3:00 pm | Python in TouchDesigner
 3:30 pm | Setting up Python on your Machine
-4:00 pm | Weather Example
-5:00 pm | Packaging your Python | Dominant Color Example
-5:30 pm | Starting Points - an example for Tox Buiding
+4:00 pm | QR Code Example
+5:00 pm | Starting from a Template - Tox Buiding
+5:30 pm | Dominant Color
 6:00 pm | Wrap
 
 ## Overview
@@ -198,17 +198,14 @@ That seems like a great idea initially, until you update Touch, and nerf your si
 
 That's where using a target installation directory starts to shine. In this case we can set up an external directory alongside our project, and we can keep a tidy record of all the external Python pieces we need here. 
 
-## Instagram Example
+## QR Code Example
 
-
-## Packaging your Python
-
-
-## Starting Points - Example Reusable Approach
+## Starting from a Template - Tox Buiding
 [Template TOX for Component Dev](https://github.com/raganmd/touchdesigner-template-tox-dev)
 
-## Wrap
+## Dominant Color
 
+## Wrap
 
 ## Additional Resources
 It's always helpful to have additional Resources and learning materials, but where to look. Here's a few places to browse for topics about leanring python in and out of TouchDesigner.
