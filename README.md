@@ -9,6 +9,11 @@ Materializing Interactive Research | [mir.works](https://mir.works)
 * [TouchDesigner099](https://www.derivative.ca/099/Downloads/)
 * [Python 3.5.1](https://www.python.org/downloads/release/python-351/)
 
+## Recommended Tools
+Having an external text editor is key to lots of work in Touch. I like VS Code these days, though Sublime is also a solid choice
+* [VS Code](https://code.visualstudio.com/)
+* [Sublime Text](https://www.sublimetext.com/)
+
 ## Schedule
 Time | Topic
 ---- | ----
