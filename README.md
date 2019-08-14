@@ -1,4 +1,4 @@
-# TouchDesigner Summit 2019 | External Python Modules
+# TouchDesigner Summit 2019 | External Python Libraries
 
 ## Artist Instructors
 Matthew Ragan | [matthewragan.com](https://matthewragan.com)  
