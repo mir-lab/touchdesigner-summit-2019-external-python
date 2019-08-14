@@ -14,6 +14,22 @@ Having an external text editor is key to lots of work in Touch. I like VS Code t
 * [VS Code](https://code.visualstudio.com/)
 * [Sublime Text](https://www.sublimetext.com/)
 
+## Before the Workshop
+Before we meet there are a few things to make sure you’ve got in place. Here’s a quick run down of the pieces to make sure are in order before the workshop.
+
+**Required**
+* Make sure you’ve updated to the most recent stable build of TouchDesigner 099
+* Download and install python 3.5.1. There's a link above to make sure you have the right version of Python. This version matches the same version Touch uses and will make sure we don't have any major hiccups while we're working together.
+* Download the github repo linked above. We’ll be working with some files that are already set-up so we don’t have to make everything from scratch so it will be important to have these elements in place.
+* Make sure you have your laptop charger packed in your bag :)
+
+**Suggested**
+* Download and install a text editor - you don’t need this, but it will make a world of difference when working with lots of Python. Our recommendation is to install VS Code as it has a built in terminal. 
+* Reflect on the projects you’ve worked on in the past, and bring some questions about the problems you’ve encountered.
+* Think about the wobbles you've had when working with Python, and bring some questions for the group to discuss.
+* Don’t forget your three button mouse ;)
+
+
 ## Schedule
 Time | Topic
 ---- | ----
@@ -139,13 +155,20 @@ That seems like a great idea initially, until you update Touch, and nerf your si
 That's where using a target installation directory starts to shine. In this case we can set up an external directory alongside our project, and we can keep a tidy record of all the external Python pieces we need here. 
 
 ## QR Code Example
+There are lots of different kinds of mischief we might get into when working with an external library, and in this workshop we'll first look at how we might do something that's otherwise pretty fussy - creating a [QR code](https://en.wikipedia.org/wiki/QR_code). Quick Response codes have been around for ages. These 2D barcodes are used all over the place these days, from fast reference links to product numbers, to tickets. They can often be handy for generating unique identifiers at installations or events, and if you've done any work in Asia they're often the cornerstone of working with platforms like WeChat. There are lots of ways to make them online, but what if we want to generate them on the fly ourselves? 
 
-## Starting from a Template - Tox Buiding
-[Template TOX for Component Dev](https://github.com/raganmd/touchdesigner-template-tox-dev)
+Lucky for us there's a python library for this called `qrcode`. We also happen to want / need a library called `Pillow` - which is a friendly Python Imaging Library. The pip command to get both of these is `qrcode[pil]`. During the workshop we'll use this library as our first foray into working with external libraries, keeping our work organized, and working around the fact that we don't have a virtual environment. 
 
 ## Dominant Color
+So we've managed to get an external library working, but what's an example of something a little more exciting and complicated that we might pick apart? For a project I worked on recently we wanted to pull the dominant color from a source image. That's actually a much more complicated ask than you might initially imagine, and to really get there you really have to dig-in and think deeply about what you're up to. Let's look at an example that required multiple external libraries, and some careful / thoughtful planning to make sure everything worked without a hitch. If you want to see the reference repo you can find it here on the web - [TouchDesigner Dominant Color](https://github.com/raganmd/touchdesigner-dominant-color).
+
+## Starting from a Template - TOX Building
+Making deployable and reusable TOXes is it's own adventure, but espeically challenging when it comes to working with non-standard python libraries. If we have time we'll take a look at the process Matthew's started using for making this process as painless as possible. This includes some helper scripts that automatically create all the required directories for your external python bits, and launch terminal windows to do the installation work. An example approach is included in this repo, but if you'd like to learn more, or fork this process for yourself, checkout - [Template TOE for Component Dev](https://github.com/raganmd/touchdesigner-template-tox-dev)
 
 ## Wrap
+By the end of our workshop you should have walked through the process of integrating an external python library into a TouchDesigner project, and have some ideas about how to make sure this is portable. The hardest part of working with non-standard python libraries is that it's often easy to get working on one machine, but a real hassle to get working out in production. With any luck you should be prepared to tackle this process yourself, and have some ideas about what else you might do with Python in your projects of all sizes.
+
+Happy Programming!
 
 ## Additional Resources
 It's always helpful to have additional Resources and learning materials, but where to look. Here's a few places to browse for topics about learning python in and out of TouchDesigner.
