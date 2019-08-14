@@ -21,7 +21,7 @@ Time | Topic
 3:00 pm | Python in TouchDesigner
 3:30 pm | Setting up Python on your Machine
 4:00 pm | QR Code Example
-5:00 pm | Starting from a Template - Tox Buiding
+5:00 pm | Starting from a Template - Tox Building
 5:30 pm | Dominant Color
 6:00 pm | Wrap
 
@@ -60,72 +60,7 @@ You can run an operation in another thread - though for this to work you have to
 #### Subprocess
 You can use use a subprocess call - in other words, write a python script in a text file, and then ask your operating system to run that file. There are great ways to pass in arguments in those situations, and if you really need data there are ways to get a response before the process quits. This can be a very flexible solution for a number of situations, and worth looking into if you want something that's non-blocking and can be run outside of TouchDesigner.
 
-Subprocess calls can be infuriating if you're not familiar with them, so let's look at some simple anatomy of making this work from Touch.
-
-If you want to use TouchDesigner's version of Python you'd write something like this:
-```python
-import subprocess
-
-cmd_python_script   = '{}\\your_python_file.py'.format(project.folder)
-
-subprocess.Popen(['python', cmd_python_script], shell=False)
-```
-
-If you want to use a specific version of Python you'd write something like this:
-```python
-import subprocess
-
-cmd_python_script   = '{}\\your_python_file.py'.format(project.folder)
-python_exe          = 'C:\\Program Files\\Python35\\python.exe' #this might be different for you
-
-subprocess.Popen([python_exe, cmd_python_script], shell=False)
-```
-
-If you want to call a script with arguments you'd write something like this:
-
-This is our Script in TouchDesigner
-```python
-import subprocess
-
-cmd_python_script = '{}\\cmd_line_python_args.py'.format(project.folder)
-script_args = ['-i', 'Hello', '-i2', 'TouchDesigner']
-
-command_list = ['python', cmd_python_script] + script_args
-
-subprocess.Popen(command_list, shell=False)
-```
-
-This is our python script that's being called:
-```python
-import time
-from argparse import ArgumentParser
-
-# a simple method to print out our arguments
-def My_python_method(kwargs):
-
-    disp_str = 'key: {} | value: {} | type: {}'
-    for each_key, each_value in kwargs.items():
-        formatted_str = disp_str.format(each_key, each_value, type(each_value))
-        print(formatted_str)
-
-    # keep the shell open so we can debug
-    time.sleep(int(kwargs.get('delay')))
-
-# execution order matters -this puppy has to be at the bottom as our functions are defined above
-if __name__ == '__main__':
-    parser = ArgumentParser(description='Set up a file watcher to stylize files that are added to the specified folder')
-    parser.add_argument("-i", "--input", dest="in", help="an input string", required=True)
-    parser.add_argument("-i2", "--input2", dest="in2", help="another input", required=True)    
-    parser.add_argument("-d", "--delay", dest="delay", help="how long our terminal stays up", required=False, default=10)
-    args = parser.parse_args()
-    My_python_method(vars(args))
-    # My_python_method(args.input, args.intput2, args.delay)
-    pass
-
-# example
-# python .\cmd_line_python_args.py -i="a string" -i2="another string" -d=15
-
-```
+If you want to learn more [check out Working with Subprocess](https://github.com/raganmd/blog-td-subprocess)
 
 #### Python Stand alones
 You can also always write a little python script that just runs in the background. There are plenty of ways for sending data to and from these kinds of applications, so this is a solid option - but it will require some time devoted to developing your Python-fu.
@@ -213,7 +148,7 @@ That's where using a target installation directory starts to shine. In this case
 ## Wrap
 
 ## Additional Resources
-It's always helpful to have additional Resources and learning materials, but where to look. Here's a few places to browse for topics about leanring python in and out of TouchDesigner.
+It's always helpful to have additional Resources and learning materials, but where to look. Here's a few places to browse for topics about learning python in and out of TouchDesigner.
 
 ### Learning Python
 * [Python in TouchDesigner](https://matthewragan.com/teaching-resources/touchdesigner/python-in-touchdesigner/)  
